@@ -59,3 +59,8 @@ Exemplo de armas
 
 - Cenario (simplificado / blocky)
     - Textura
+
+
+### Links
+
+[C sharp and GDScript differences](https://docs.godotengine.org/en/stable/tutorials/scripting/c_sharp/c_sharp_differences.html#full-list-of-equivalences)
