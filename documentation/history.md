@@ -1,0 +1,1 @@
+-   Começo feliz e bobo ao avançar fica sinistro

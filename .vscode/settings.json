@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "Mathf"
+    ],
+    "editor.tabSize": 4,
+    "prettier.useTabs": false,
+    "prettier.tabWidth": 4,
+    "editor.useTabStops": true,
+}
