@@ -1,42 +1,57 @@
 using Godot;
-using System;
 
 public partial class Player : CharacterBody3D
 {
-    public const float Speed = 5.0f;
-    public const float JumpVelocity = 4.5f;
+	[Export] public PlayerInput input { get; set; }
 
-    // Get the gravity from the project settings to be synced with RigidBody nodes.
-    public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
+	public const float Speed = 5.0f;
+	public const float JumpVelocity = 4.5f;
 
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector3 velocity = Velocity;
+	public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 
-        // Add the gravity.
-        if (!IsOnFloor())
-            velocity.Y -= gravity * (float)delta;
+	private Vector3 updVelocity = Vector3.Zero;
 
-        // Handle Jump.
-        if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-            velocity.Y = JumpVelocity;
+	public override void _PhysicsProcess(double delta)
+	{
+		updVelocity = Vector3.Zero;
 
-        // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
-        Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized().Rotated(Vector3.Up, Mathf.DegToRad(45));
-        if (direction != Vector3.Zero)
-        {
-            velocity.X = direction.X * Speed;
-            velocity.Z = direction.Z * Speed;
-        }
-        else
-        {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-            velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
-        }
+		UpdateVelocityByGravity((float)delta);
+		UpdateVelocityByInput();
+		UpdateJumpByInput();
 
-        Velocity = velocity;
-        MoveAndSlide();
-    }
+		Velocity = updVelocity;
+		MoveAndSlide();
+	}
+
+	private void UpdateVelocityByGravity(float delta)
+	{
+		if (!IsOnFloor())
+		{
+			updVelocity.Y -= gravity * delta;
+		}
+	}
+
+	private void UpdateJumpByInput()
+	{
+		if (input.isJumping)
+		{
+			updVelocity.Y = JumpVelocity;
+		}
+	}
+
+	private void UpdateVelocityByInput()
+	{
+		Vector3 direction = input.GetDirection(Transform.Basis);
+
+		if (direction != Vector3.Zero)
+		{
+			updVelocity.X = direction.X * Speed;
+			updVelocity.Z = direction.Z * Speed;
+		}
+		else
+		{
+			updVelocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			updVelocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
+		}
+	}
 }
