@@ -8,7 +8,7 @@
 		"editor.formatOnSave": false,
 		"editor.formatOnType": false,
 	},
-	"godot.csharp.executablePath": "/Applications/Godot_mono.app/Contents/MacOS/Godot",
+	"godot_tools.gdscript_lsp_server_port": 6005,
 	"csharp.semanticHighlighting.enabled": true,
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,

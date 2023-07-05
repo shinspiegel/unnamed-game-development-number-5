@@ -3,33 +3,21 @@
 	"tasks": [
 		{
 			"label": "build",
-			"command": "/Applications/Godot_mono.app/Contents/MacOS/Godot",
-			"type": "process",
-			"args": [
-				"--build-solutions",
-				"--path",
-				"${workspaceRoot}",
-				"--no-window",
-				"-q"
-			],
-			"problemMatcher": "$msCompile"
-		},
-		{
-			"label": "build-solutions",
-			"group": "test",
-			"command": "dotnet restore; ${env:GODOT4} --headless --build-solutions --quit || exit 0",
+			"command": "dotnet",
 			"type": "shell",
-			"options": {
-				"cwd": "${workspaceFolder}"
+			"args": [
+				"build",
+				"/property:GenerateFullPaths=true",
+				"/consoleloggerparameters:NoSummary"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
 			},
 			"presentation": {
-				"echo": true,
-				"reveal": "silent",
-				"focus": false,
-				"panel": "shared",
-				"showReuseMessage": false,
-				"clear": false
-			}
-		},
+				"reveal": "silent"
+			},
+			"problemMatcher": "$msCompile"
+		}
 	]
 }

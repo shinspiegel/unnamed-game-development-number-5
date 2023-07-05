@@ -1,11 +1,11 @@
 {
 	"recommendations": [
-		"ms-dotnettools.csharp",
-		"streetsidesoftware.code-spell-checker-portuguese-brazilian",
-		"neikeq.godot-csharp-vscode",
-		"EditorConfig.EditorConfig",
 		"alfish.godot-files",
+		"EditorConfig.EditorConfig",
 		"geequlim.godot-tools",
+		"ms-dotnettools.csharp",
+		"neikeq.godot-csharp-vscode",
+		"streetsidesoftware.code-spell-checker-portuguese-brazilian",
 		"streetsidesoftware.code-spell-checker",
 		"VisualStudioExptTeam.vscodeintellicode",
 	]
